@@ -1,0 +1,19 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    data-password:
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      show-sql: true
+#     format-sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+
