@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderSearch;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -108,4 +109,13 @@ public class OrderRepository {
 
     return query.getResultList();
   }
+
+  public List<Order> findAllWithMemberDelievery() {
+    return em.createQuery(
+        "select o from Order o" +
+                 " join fetch o.member m" +
+                 " join fetch o.delivery d", Order.class
+    ).getResultList();
+  }
+
 }
