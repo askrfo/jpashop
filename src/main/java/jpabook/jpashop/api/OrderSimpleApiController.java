@@ -22,10 +22,14 @@ public class OrderSimpleApiController {
   private final OrderRepository orderRepository;
   private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
-  @GetMapping(value = "/api/v1/orders")
+  @GetMapping(value = "/api/v1/simple-orders")
   public List<Order> orderV1() {
     List<Order> all = orderRepository.findAllByString(new OrderSearch());
-
+    for (Order order : all) {
+      order.getMember().getName();  //Lazy 강제 초기화
+      order.getDelivery().getAddress(); //Lazy 강제 초기화
+      //order.getOrderItems().stream().forEach(o -> o.getItem().getName());
+    }
     return all;
   }
 
